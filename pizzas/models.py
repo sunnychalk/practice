@@ -7,6 +7,7 @@ class Pizza(models.Model):
 	is_vegan = models.BooleanField(default=False)
 	is_meat = models.BooleanField(default=False)
 	price = models.DecimalField(max_digits=9, decimal_places=2, default=0)
+	status = models.CharField(max_length=20, default="Active")
 
 	class Meta:
 		verbose_name = "Пицца"
