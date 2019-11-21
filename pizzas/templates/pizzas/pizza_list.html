@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<h1>Menu</h1>
+
+{% if object_list %}
+    <h2> We have {{ object_list|length }} pizzas in our menu </h2>
+{% else %}
+    <h2>Today we have no pizzas in menu</h2>
+{% endif %}
+
+<ul>
+	{% for pizza in object_list %}
+	    <li>{{ pizza}}, price = {{ pizza.price }}, {{ pizza.description|lower }}</li>
+	{% endfor %}
+</ul>
+
+{% include "index.html" %}
+
+{% endblock %}
+
