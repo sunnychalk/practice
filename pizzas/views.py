@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django import template
-from pizzas.models import Pizza
+from pizzas.models import Pizza, InstancePizza, Order
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, UpdateView
-from pizzas.forms import IncreasePriceForm
+from pizzas.forms import IncreasePriceForm, PizzaForm
 from django.db.models import F
 
 
@@ -31,6 +31,22 @@ class IncreasePrice(FormView):
 		increase_price_form = self.form_class(request.POST)
 		self.object = Pizza.objects.all().update(price=F('price')+100)
 		return super().post(request, *args, **kwargs)
+
+
+class AddPizzaView(FormView):
+	template_name = 'core.html'
+	form_class = PizzaForm
+	success_url = '/pizzas/'
+
+	def form_valid(self, form):
+		print('form.cleaned_data:', form.cleaned_data)
+		pizza = Pizza.objects.get(id=form.cleaned_data.get('pizza_id'))
+		count = form.cleaned_data.get('count')
+		instance_pizza = pizza.create_instance_pizza(count)
+		order, created = Order.objects.get_or_create(user=self.request.user, full_price=0)
+		order.pizzas.add(instance_pizza)
+		print ('instance_pizza', instance_pizza)
+		return super().form_valid(form)
 
 
 

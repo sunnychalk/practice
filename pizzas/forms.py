@@ -6,4 +6,6 @@ class IncreasePriceForm(forms.Form):
 	message = forms.CharField(max_length=100, initial = 'I want to increase price by 100')
 
 	
-
+class PizzaForm(forms.Form):
+	pizza_id = forms.IntegerField()
+	count = forms.IntegerField()
