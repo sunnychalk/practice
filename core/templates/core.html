@@ -9,6 +9,13 @@
 </div>
 
 <div>
+	<h2>Сортировка</h2>
+	<a href="/pizzas/?ordering=price">По возрастанию цены</a><br>
+	<a href="/pizzas/?ordering=-price">По уменьшению цены</a><br>
+	<a href="/pizzas/?ordering=name">По названию</a><br>
+</div>
+
+<div>
 	{% for pizza in pizzas %}
 	<div>
 		<p>{{ pizza.name }}</p>
