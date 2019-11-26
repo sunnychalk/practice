@@ -11,6 +11,15 @@
 <h2>{{ orders }}</h2>
 
 <div>
+	<h3>Мой заказ: {{ order.get_full_price }}</h3>
+	{% for pizza in order.pizzas.all %}
+	<div>
+		<p>{{ pizza.name }}, цена: {{ pizza.price }}, количество: {{ pizza.count }}</p>
+	</div>
+	{% endfor %}
+</div>
+
+<div>
 	<h2>Сортировка</h2>
 	<a href="/pizzas/?ordering=price">По возрастанию цены</a><br>
 	<a href="/pizzas/?ordering=-price">По уменьшению цены</a><br>
