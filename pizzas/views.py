@@ -19,7 +19,6 @@ class CoreTemplateView(TemplateView):
 		if ordering not in self.sorting_fields:
 			ordering = 'name'
 		context['pizzas'] = Pizza.objects.all().order_by(ordering)
-		print('PIZZAS:', context['pizzas'])
 		return context
 
 
