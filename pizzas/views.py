@@ -3,11 +3,25 @@ from django import template
 from pizzas.models import Pizza, InstancePizza, Order
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView, UpdateView
+from django.views.generic import TemplateView
 from pizzas.forms import IncreasePriceForm, PizzaForm
 from django.db.models import F
 
 
 # Create your views here.
+class CoreTemplateView(TemplateView):
+	template_name = 'core.html'
+	sorting_fields = ['price', 'name', '-price', '-name']
+
+	def get_context_data(self, *args, **kwargs):
+		context = super().get_context_data(**kwargs)
+		ordering = self.request.GET.get('ordering', 'name')
+		if ordering not in self.sorting_fields:
+			ordering = 'name'
+		context['pizzas'] = Pizza.objects.all().order_by(ordering)
+		return context
+
+
 class PizzaList(ListView):
 	model = Pizza
 	template_name = 'pizza_list.html'
