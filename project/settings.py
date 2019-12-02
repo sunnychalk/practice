@@ -7,7 +7,7 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = 'gn9h&f26i%0)if$&^a7yx%fn$m!9=8%rc=b$ujnyjjon$ood3_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*', ]
 INTERNAL_IPS = ['127.0.0.1', ]
 
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'core',
     'accounts',
+    'pizzas'
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
+                'pizzas.context_processor.orders_made',
+                'core.context_processor.contex_core',
             ],
         },
     },
