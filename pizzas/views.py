@@ -29,7 +29,7 @@ class PizzaList(ListView):
 	def get_context_data(self, **kwargs):
 		context = super(PizzaList, self).get_context_data(**kwargs)
 		context['pizza_amount'] = Pizza.objects.all().count()
-		context['more_than_40'] = Pizza.objects.filter(price__gt=40).filter(status="Active").values('name')
+		context['more_than_40'] = Pizza.objects.filter(price__gt=40).values('name')
 		context['values_list'] = Pizza.objects.all().values_list('name')
 		return context
 

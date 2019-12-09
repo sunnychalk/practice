@@ -7,8 +7,8 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^pizza_list/$', PizzaList.as_view(), name='pizza-list'),
-    url(r'^increase_price/$', IncreasePrice.as_view(), name='increase-price'),
-    url(r'^pizzas/$', CoreTemplateView.as_view()),
-    url(r'^add_pizza/$', AddPizzaView.as_view()),
+    url(r'^increase_price/$', IncreasePrice.as_view(), name='increase_price'),
+    url(r'^pizzas/$', CoreTemplateView.as_view(), name='pizzas'),
+    url(r'^add_pizza/$', AddPizzaView.as_view(), name='add-pizza'),
 ]
 
